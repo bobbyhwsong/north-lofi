@@ -8,12 +8,14 @@ import os
 # load_dotenv()
 
 # OpenAI 클라이언트 설정
-api_key = st.secrets["OPENAI_API_KEY"]
 
-client = OpenAI(
-    api_key=api_key,
-    base_url="https://api.openai.com/v1"
-)
+try:
+    api_key = st.secrets["OPENAI_API_KEY"]
+except KeyError:
+    st.error("API 키가 설정되지 않았습니다. Streamlit secrets를 확인하세요.")
+    st.stop()
+
+client = OpenAI(api_key=api_key)
 
 # 페이지 설정
 st.set_page_config(
