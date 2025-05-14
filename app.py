@@ -8,8 +8,10 @@ import os
 # load_dotenv()
 
 # OpenAI 클라이언트 설정
+api_key = st.secrets["OPENAI_API_KEY"]
+
 client = OpenAI(
-    api_key=st.secrets["OPENAI_API_KEY"],
+    api_key=api_key,
     base_url="https://api.openai.com/v1"
 )
 
