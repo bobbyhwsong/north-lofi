@@ -7,8 +7,11 @@ import os
 # 환경 변수 로딩 방식 변경
 # load_dotenv()
 
-# OpenAI 클라이언트 설정 변경
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# OpenAI 클라이언트 설정
+client = OpenAI(
+    api_key=st.secrets["OPENAI_API_KEY"],
+    base_url="https://api.openai.com/v1"
+)
 
 # 페이지 설정
 st.set_page_config(
