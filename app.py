@@ -1,13 +1,14 @@
 import streamlit as st
 from openai import OpenAI
-from dotenv import load_dotenv
+# dotenv 제거
+# from dotenv import load_dotenv
 import os
 
-# 환경 변수 불러오기
-load_dotenv()
+# 환경 변수 로딩 방식 변경
+# load_dotenv()
 
-# OpenAI 클라이언트 설정
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# OpenAI 클라이언트 설정 변경
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # 페이지 설정
 st.set_page_config(
