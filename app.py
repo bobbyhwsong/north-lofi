@@ -339,10 +339,15 @@ elif st.session_state.current_page == "feedback":
             st.error("❌ 틀렸습니다.")
             st.markdown(TASKS[st.session_state.selected_task]["explanation"]["incorrect"])
     else:
-        st.write("정답:", TASKS[st.session_state.selected_task]["correct_actions"])
+        # correct_actions 또는 correct_action 키 확인
+        correct_answers = TASKS[st.session_state.selected_task].get("correct_actions", 
+            [TASKS[st.session_state.selected_task].get("correct_action")])
+        st.write("정답:", correct_answers)
         
         for action in st.session_state.user_answer:
             feedback = TASKS[st.session_state.selected_task]["feedback"][action]
+            if isinstance(feedback, dict):
+                feedback = feedback["message"]
             if "✅" in feedback:
                 st.success(feedback)
             elif "❌" in feedback:
